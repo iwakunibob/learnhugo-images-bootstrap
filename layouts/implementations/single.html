@@ -1,0 +1,98 @@
+{{ define "main" }}
+<section class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {{ partial "title" . }}
+        <div class="py-3">{{ .Content | markdownify }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Aspect Ratio</h2>
+        {{ $opts := (dict "page" . "src" "images/placeholder1.jpg" "fillRatio" (slice 4 3) "alt" "Image ratio filled to 4:3")}}
+        {{ partial "exercises/aspect-ratio" $opts }}
+      </div>
+      <div class="col-md-6">
+        <h2>SRCSET - Pixel Density</h2>
+        {{ $opts2 := (dict "page" . "src" "images/placeholder2.jpg" "width" 300 "densities" (slice 1 2) "alt" "Image 200px wide outputted at 1x, 2x densities")}}
+        {{ partial "exercises/srcset-density" $opts2 }}
+      </div>
+      <div class="col-md-6">
+        <h2>SRCSET - Responsive</h2>
+        {{ $opts3 := (dict "page" . "src" "images/placeholder3.jpg" "widths" (slice 300 600) "sizes" "(min-width: 768px) 50vw, 100vw" "alt" "Image outputted at 200 and 300px wide") }}
+        {{ partial "exercises/srcset-responsive" $opts3 }}
+      </div>
+      <div class="col-md-6">
+        <h2>SRCSET - Responsive - WebP</h2>
+        {{ $opts4 := (dict "page" . "src" "images/placeholder4.jpg" "widths" (slice 300 600) "sizes" "(min-width: 768px) 50vw, 100vw" "alt" "Image outputted at 200 and 300px wide") }}
+        {{ partial "exercises/srcset-responsive-webp" $opts4 }}
+      </div>
+      <div class="col-md-6">
+        <h2>SRCSET - Density/Responsive/WebP</h2>
+        {{ $opts5 := (dict "page" . "src" "images/placeholder1.jpg"  "sizes" "(min-width: 768px) 50vw, 100vw" "alt" "Pixel density or responsive srcset with WebP/orig format output") }}
+        {{ partial "exercises/srcset-density-responsive-webp" $opts5 }}
+      </div>
+      <div class="col-md-6">
+        <h2>SRCSET - Density/Responsive/WebP/fillRatio</h2>
+        {{ $opts6 := (dict "page" . "src" "images/placeholder2.jpg" "fillRatio" (slice 4 3) "width" 200 "sizes" "(min-width: 768px) 50vw, 100vw" "alt" "Pixel density or responsive srcset with WebP/orig format output with fillRatio") }}
+        {{ partial "exercises/srcset-density-responsive-webp-fillratio" $opts6 }}
+      </div>
+      <div class="col-md-6">
+        <h2>Image Processing Partial with options</h2>
+        {{ $opts7 := (dict 
+          "page" . 
+          "src" "images/placeholder3.jpg" 
+          "fillRatio" (slice 4 3) 
+          "quality" 100
+          "hint" "picture"
+          "rotate" 90
+          "anchor" "BottomLeft"
+          "resampleFilter" "NearestNeighbor"
+          "width" 200 
+          "sizes" "(min-width: 768px) 50vw, 100vw" 
+          "alt" "Pixel density or responsive srcset with WebP/orig format output with fillRatio") }}
+        {{ partial "exercises/image" $opts7 }}
+      </div>
+      <div class="col-md-6">
+        <h2>Alt text set, Title text not</h2>
+        {{ $opts8 := (dict 
+          "page" . 
+          "src" "images/placeholder4.jpg" 
+          "alt" "Alt text") }}
+        {{ partial "exercises/image" $opts8 }}
+      </div>
+      <div class="col-md-6">
+        <h2>Alt text not set, Title text set</h2>
+        {{ $opts9 := (dict 
+          "page" . 
+          "src" "images/placeholder1.jpg" 
+          "title" "Title text") }}
+        {{ partial "exercises/image" $opts9 }}
+      </div>
+      <div class="col-md-6">
+        <h2>Alt & Title text not set</h2>
+        {{ $opts10 := (dict 
+          "page" . 
+          "src" "images/placeholder2.jpg" 
+          ) }}
+        {{ partial "exercises/image" $opts10 }}
+      </div>
+      <div class="col-md-6">
+        <h2>Image Figure</h2>
+        {{ $opts11 := (dict 
+          "page" . 
+          "src" "images/placeholder2.jpg" 
+          "caption" "Figure Caption"
+          "figureTitle" "Figure Title"
+          "link" "https://www.google.com"
+          "attr" "Donald Duck"
+          "attrLink" "https://www.disney.com"
+          ) }}
+        {{ partial "exercises/figure" $opts11 }}
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}

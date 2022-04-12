@@ -4,9 +4,17 @@
 ### Hugo ###
 # Generated files by hugo
 /public/
-/resources/_gen/
+
 /assets/jsconfig.json
 hugo_stats.json
+.hugo_build.lock
+node_modules/
+# ignore resources for local builds, comment out if uploading to netlify
+resources/
+# /resources/_gen/
+
+# ignore resources for local builds, comment out if uploading to netlify
+resources/
 
 # Executable may be added to repository
 hugo.exe

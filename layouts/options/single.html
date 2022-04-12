@@ -1,0 +1,79 @@
+{{ define "main" }}
+<section class="main">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {{ partial "title" . }}
+        <div class="py-3">{{ .Content | markdownify }}</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h2>Anchor</h2>
+        {{ $img1 := .Resources.GetMatch "**1*" }}
+        {{ $img1 := $img1.Fill "400x400 TopRight" }}
+        <figure class="figure">
+          <img src="{{ $img1.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Fill within a 400x400px box, Anchor TopRight</figcaption>
+        </figure>
+        {{/* Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight */}}
+      </div>
+      <div class="col-md-6">
+        <h2>Rotate</h2>
+        {{ $img2 := .Resources.GetMatch "**2*" }}
+        {{ $img2 = $img2.Resize "600x r90" }}
+        <figure class="figure">
+          <img src="{{ $img2.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, rotate 90 degrees counter-clockwise</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-6">
+        <h2>Target Format</h2>
+        {{ $img3 := .Resources.GetMatch "**3*" }}
+        {{ $img3 = $img3.Resize "600x webp" }}
+        <figure class="figure">
+          <img src="{{ $img3.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, webp format output</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-6">
+        <h2>WebP Hint</h2>
+        {{ $img4 := .Resources.GetMatch "**text*" }}
+        {{ $img4 = $img4.Resize "600x webp" }}
+        <figure class="figure">
+          <img src="{{ $img4.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, webp format output, text image type HINT</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-6">
+        <h2>Background Color</h2>
+        {{ $img5 := .Resources.GetMatch "**png*" }}
+        {{ $img5 = $img5.Resize "600x jpeg #000000" }}
+        <figure class="figure">
+          <img src="{{ $img5.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, JPEG output with black background</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-6">
+        <h2>Quality</h2>
+        {{ $img6 := .Resources.GetMatch "**4*" }}
+        {{ $img6 = $img6.Resize "600x webp q20" }}
+        <figure class="figure">
+          <img src="{{ $img6.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, webp format output, quality 20</figcaption>
+        </figure>
+      </div>
+      <div class="col-md-6">
+        <h2>Resample Filter</h2>
+        {{ $img7 := .Resources.GetMatch "**1*" }}
+        {{ $img7 = $img7.Resize "600x Gaussian" }}
+        <figure class="figure">
+          <img src="{{ $img7.RelPermalink }}" class="figure-img img-fluid rounded" alt="...">
+          <figcaption class="figure-caption">.Resources.GetMatch - Resize to a width of 600px and preserve ratio, Gaussian resample filter</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{ end }}
